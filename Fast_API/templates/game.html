@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block navigation %}
+    <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href="/main">Новости игр</a>
+        <a class="nav-link" href="/reviews">Обзоры игр</a>
+    </nav>
+{% endblock %}
+{% block content %}
+    {% for g in game %}
+        <img src="{{ g.image }}" alt=''/>
+        <h1>{{g.title}}</h1>
+        <h2>Стоимость в Steam: {{g.cost}}руб.</h2>
+        <h4>{{g.description}}</h4>
+        <h1>Обзор:</h1>
+        <p>{{g.reviews}}</p>
+    {% endfor %}
+{% endblock %}

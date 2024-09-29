@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block navigation %}
+    <nav class="nav nav-masthead justify-content-center">
+        <a class="nav-link" href="/main">Новости игр</a>
+        <a class="nav-link active" href="/reviews">Обзоры игр</a>
+    </nav>
+{% endblock %}
+
+{% block content %}
+    {% for game in games %}
+        <img src="{{ game.image }}" alt='' height="150"/>
+        <h1>{{game.title}}</h1>
+        <h2>Стоимость в Steam: {{game.cost}}руб.</h2>
+        <h4>{{game.description}}</h4>
+        <a class="btn btn-lg btn-secondary" href="/game_id?game_id={{game.id}}" >Узнать больше</a>
+        <br><br>
+    {% endfor %}
+{% endblock %}

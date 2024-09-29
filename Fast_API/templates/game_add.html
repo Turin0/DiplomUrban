@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <form method="post">
+        <label for="title"> Название игры: </label>
+        <input type="text" id="title" name="title" maxlength="50" required>
+
+        <label for="cost"> Цена в стим </label>
+        <input type="text" id="cost" name="cost" maxlength="8" required>
+
+        <label for="size"> Размер игры в гб. </label>
+        <input type="text" id="size" name="size" maxlength="8" required>
+
+        <label for="description"> Описание </label>
+        <input type="text" id="description" name="description" required >
+
+        <label for="reviews"> Обзор </label>
+        <input type="text" id="reviews" name="reviews" required>
+
+        <label for="image"> Картинка </label>
+        <input type="text" id="image" name="image" required >
+
+        <button type="submit"> Отправить </button>
+    </form>
+{% endblock %}
