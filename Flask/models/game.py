@@ -11,3 +11,10 @@ class Game(db.Model):
     description = db.Column(db.String, nullable=False)
     reviews = db.Column(db.String, nullable=False)
     image = db.Column(db.String(300), nullable=False)
+
+
+class Post(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    title = db.Column(db.String(100), nullable=False)
+    description = db.Column(db.String, nullable=False)
+    reviews = db.Column(db.String, nullable=False)

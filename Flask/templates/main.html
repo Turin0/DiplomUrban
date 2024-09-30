@@ -7,8 +7,12 @@
 {% endblock %}
 {% block content %}
     <h1 class="cover-heading">Новости игр.</h1>
-    <p class="lead">Тут будут некоторые посты.</p>
+    {% for post in posts %}
+        <h1>{{post.title}}</h1>
+        <h2> Краткое описание: {{post.description}}</h2>
+        <h4>{{post.reviews}}</h4>
+    {% endfor %}
     <p class="lead">
-        <a href="#" class="btn btn-lg btn-secondary">Learn more</a>
+        <a href="/post_add" class="btn btn-lg btn-secondary">Добавить пост</a>
     </p>
 {% endblock %}
