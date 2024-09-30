@@ -9,3 +9,6 @@ class GameAdmin(admin.ModelAdmin):
     fields = [('title', 'cost', 'size'), 'description', 'image', 'reviews']
     search_fields = ('title',)
     list_filter = ('title', 'cost')
+
+
+admin.site.register(Post)

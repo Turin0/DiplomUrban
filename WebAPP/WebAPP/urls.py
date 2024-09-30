@@ -21,6 +21,7 @@ from app.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_page),
-    path('reviews/', reviews),
+    path('reviews/', show_reviews),
     path('game_reviews/<int:game_id>/', game_page, name='game'),
+    path('post_add/', post_add),
 ]

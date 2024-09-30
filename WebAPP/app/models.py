@@ -16,3 +16,12 @@ class Game(models.Model):
 
     def get_absolute_url(self):
         return reverse('game', kwargs={'game_id': self.pk})
+
+
+class Post(models.Model):
+    title = models.CharField(max_length=50)
+    description = models.TextField()
+    reviews = models.TextField()
+
+    def __str__(self):
+        return self.title
