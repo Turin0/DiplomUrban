@@ -1,23 +1,24 @@
 from typing import Annotated
 from sqlalchemy import insert, select, delete
-from fastapi import APIRouter, Request, Depends, status, HTTPException
+from fastapi import APIRouter, Request, Depends, status, HTTPException, Form
 from fastapi.templating import Jinja2Templates
 from sqlalchemy.orm import Session
 from backend.db_depends import get_db
-from models_Fast_API.game import Game
+from models_Fast_API.game import Game, Post
 from schemas import CreateGame
 
 router_main = APIRouter(prefix='', tags=['main'])
 templates = Jinja2Templates(directory='templates')
 
 
-@router_main.get('/main')
-async def main_page(request: Request):
+@router_main.get('/')
+async def main_page(request: Request, db: Annotated[Session, Depends(get_db)]):
     page_name = 'Новости игр'
     context = {
         'title': page_name,
         'page_name': page_name,
-        'request': request
+        'request': request,
+        'posts': db.scalars(select(Post)).all()
     }
     return templates.TemplateResponse(name='main.html', context=context)
 
@@ -71,3 +72,21 @@ async def game_page(request: Request, db: Annotated[Session, Depends(get_db)], g
         'request': request
     }
     return templates.TemplateResponse(name='game.html', context=context)
+
+
+@router_main.get('/post_add')
+async def post_add_show(request: Request):
+    context = {
+        'name_page': 'Добавление поста',
+        'title': 'Добавление поста',
+        'request': request
+    }
+    return templates.TemplateResponse(name='post_add.html', context=context)
+
+
+@router_main.post('/post_add')
+async def post_add(request: Request, db: Annotated[Session, Depends(get_db)], title: str = Form(),
+                   description: str = Form(), reviews: str = Form()):
+    db.execute(insert(Post).values(title=title, description=description, reviews=reviews))
+    db.commit()
+    return templates.TemplateResponse(name='success.html', context={'request': request})

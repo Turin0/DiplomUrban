@@ -12,3 +12,12 @@ class Game(Base):
     image = Column(VARCHAR)
     description = Column(String)
     reviews = Column(String)
+
+
+class Post(Base):
+    __tablename__ = 'app_post'
+    __table_args__ = {'extend_existing': True}
+    id = Column(Integer, primary_key=True)
+    title = Column(VARCHAR)
+    description = Column(String)
+    reviews = Column(String)
