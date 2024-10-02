@@ -25,8 +25,7 @@ def post_add(request):
         title = request.POST.get('title')
         description = request.POST.get('description')
         reviews = request.POST.get('reviews')
-        image = request.POST.get('image')
-        Post.objects.create(title=title, description=description, reviews=reviews, image=image)
+        Post.objects.create(title=title, description=description, reviews=reviews)
         return render(request, 'success.html')
     return render(request, 'post_add.html', context)
 
